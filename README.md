@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# 📦 Inventory Management System – SAP-like Web Module for Small Businesses
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is part of a scalable SAP-inspired business management system built for small businesses like milk tea shops, bakeries, groceries, and PC shops. It is designed as a **web-based dashboard** to handle inventory efficiently, intuitively, and in a way that supports future expansion such as POS integration.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔧 Features
 
-### `npm start`
+### ✅ Inventory Dashboard
+- Overview of total items, low stock, out-of-stock, expired items
+- Weekly/monthly stock movement graphs
+- Recent stock activities
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ✅ Product Catalog / Item Masterlist
+- Add/edit/delete items
+- Assign categories and suppliers
+- Attach barcodes/SKUs
+- Set reorder levels
+- Upload product images (optional)
+- Track expiry dates (optional)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ✅ Stock In / Stock Out Logs
+- Manual stock in/out entries
+- POS-ready auto stock-out
+- Log with date, user, and remarks
+- Filter by date range
 
-### `npm test`
+### ✅ Stock Adjustment
+- Adjust for damaged, lost, expired items
+- Requires reason and audit trail
+- Quantity changes tracked in history
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ✅ Low Stock Alerts
+- Auto-detect items below reorder levels
+- Dashboard highlight
+- Future: Notification system (email/SMS)
 
-### `npm run build`
+### ✅ Category & Supplier Management
+- Create and manage product categories
+- Maintain supplier contact information
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✅ Barcode Support
+- Scan items in POS (future-ready)
+- Optional barcode image storage
+- Auto-generate unique barcodes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ✅ Expiry Tracker
+- Track perishable items
+- Highlights near-expiry and expired items
+- Filter expired items
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ✅ Inventory Reports
+- Stock report
+- Movement log report (Stock In/Out/Adjust)
+- Low stock & expired item reports
+- Export to PDF/Excel (future)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🗃️ Data Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📂 Product Table
+| Field | Type | Description |
+|-------|------|-------------|
+| `productID` | String | Unique identifier |
+| `productName` | String | Name of the item |
+| `category` | String | Category ID |
+| `supplierID` | String | Supplier reference |
+| `unit` | String | pcs, kg, ml, etc. |
+| `costPrice` | Float | Cost of product |
+| `sellingPrice` | Float | Retail price |
+| `quantity` | Integer | Current stock |
+| `reorderLevel` | Integer | Minimum quantity before alert |
+| `barcode` | String | Optional unique code |
+| `expiryDate` | Date | Optional (for perishable goods) |
+| `productImage` | URL/File | Optional image field |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 📂 Stock Logs
+| Field | Type | Description |
+|-------|------|-------------|
+| `logID` | String | Unique transaction ID |
+| `productID` | String | Linked to item |
+| `type` | Enum | IN / OUT |
+| `quantity` | Integer | Quantity changed |
+| `date` | DateTime | Timestamp |
+| `remarks` | String | Notes or reason |
+| `userID` | String | Responsible user |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📂 Adjustment Logs
+| Field | Type | Description |
+|-------|------|-------------|
+| `adjustmentID` | String | Unique ID |
+| `productID` | String | Item affected |
+| `quantityChanged` | Integer | Positive or negative |
+| `reason` | String | Damage, Lost, Recount |
+| `date` | DateTime | Adjustment date |
+| `userID` | String | Who adjusted it |
 
-## Learn More
+### 📂 Categories
+| Field | Type | Description |
+|-------|------|-------------|
+| `categoryID` | String | Unique ID |
+| `categoryName` | String | e.g., Beverages, Raw Materials |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📂 Suppliers
+| Field | Type | Description |
+|-------|------|-------------|
+| `supplierID` | String | Unique supplier ID |
+| `supplierName` | String | Business name |
+| `contactPerson` | String | Optional |
+| `contactNumber` | String | Optional |
+| `address` | String | Optional |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🚀 Planned Features
+- POS module integration
+- Multi-branch inventory
+- Sales and revenue tracking
+- Staff role permissions
+- Real-time notifications
+- Mobile app (React Native or Flutter)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📁 Tech Stack (Suggested)
+- **Frontend:** React.js or Flet (Flutter Web), Tailwind CSS
+- **Backend:** Firebase / Node.js with Express
+- **Database:** Firestore / MySQL
+- **Authentication:** Firebase Auth / JWT
+- **Reporting:** jsPDF / SheetJS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🧑‍💻 Author
+**Gerald Manongdo**  
+📍 BSIT Student | Web & Software Developer  
+💻 [Portfolio](#) | 📧 [Email](mailto:#) | 🌐 [LinkedIn](#)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 📝 License
+This project is open for academic, personal, and freelance use. Commercial use should credit the original author.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
